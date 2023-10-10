@@ -38,9 +38,12 @@ public class PlayerHaraketController : MonoBehaviour
 
     bool playerCanverdimi;
 
+    bool kiliciVurdumu;
+
     private void Awake()
     {
         instance = this;
+        kiliciVurdumu = false;
 
         rb = GetComponent<Rigidbody2D>();
         playerCanverdimi = false;
@@ -66,6 +69,14 @@ public class PlayerHaraketController : MonoBehaviour
                 kilicSprite.color = new Color(kilicSprite.color.r, kilicSprite.color.g, kilicSprite.color.b, 1f);
             }
 
+            if(Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
+            {
+                kiliciVurdumu = true;
+            }
+            else
+            {
+                kiliciVurdumu = false;
+            }
 
         }
         else
@@ -91,8 +102,13 @@ public class PlayerHaraketController : MonoBehaviour
         {
             kilicAnim.SetBool("zemindemi", zemindemi);
             kilicAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+
         }
 
+        if (kiliciVurdumu && kilicPlayer.activeSelf)
+        {
+            kilicAnim.SetTrigger("kiliciVurdu");
+        }
 
 
 
