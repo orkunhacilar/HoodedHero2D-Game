@@ -19,6 +19,11 @@ public class ToplamaManager : MonoBehaviour
         if (collision.CompareTag("Player") && !toplandimi)
         {
             toplandimi = true;
+
+            GameManager.instance.toplananCointAdet++;
+
+            UiManager.instance.CoinAdetGuncelle();
+
             Destroy(gameObject);
             Instantiate(coinEfekt, transform.position, Quaternion.identity);
         }

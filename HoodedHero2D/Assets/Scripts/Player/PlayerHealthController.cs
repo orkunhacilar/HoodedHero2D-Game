@@ -18,12 +18,16 @@ public class PlayerHealthController : MonoBehaviour
     void Start()
     {
         gecerliSaglik = maxSaglik;
+
+        UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
+   
     }
 
 
     public void CaniAzaltFNC()
     {
         gecerliSaglik--;
+        UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
 
         if (gecerliSaglik <= 0)
         {
