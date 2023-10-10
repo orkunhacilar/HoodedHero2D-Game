@@ -57,7 +57,16 @@ public class PlayerHaraketController : MonoBehaviour
             ZiplaFNC();
             YonuDegistirFNC();
 
-            normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, 1f); 
+            if (normalPlayer.activeSelf)
+            {
+                normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, 1f);
+            }
+            if (kilicPlayer.activeSelf)
+            {
+                kilicSprite.color = new Color(kilicSprite.color.r, kilicSprite.color.g, kilicSprite.color.b, 1f);
+            }
+
+
         }
         else
         {
@@ -139,7 +148,17 @@ public class PlayerHaraketController : MonoBehaviour
     {
         geriTepkiSayaci = geriTepkiSuresi;
 
-        normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, 0.5f); // karakteri dmg yerse opaklastir.
+
+        if (normalPlayer.activeSelf)
+        {
+            normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, .5f);
+        }
+        if (kilicPlayer.activeSelf)
+        {
+            kilicSprite.color = new Color(kilicSprite.color.r, kilicSprite.color.g, kilicSprite.color.b, .5f);
+        }
+
+
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
@@ -176,4 +195,13 @@ public class PlayerHaraketController : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void TakeSword()
+    {
+        normalPlayer.SetActive(false);
+        kilicPlayer.SetActive(true);
+    }
+    
+
+
 }
