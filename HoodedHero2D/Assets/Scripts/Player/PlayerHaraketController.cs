@@ -135,7 +135,7 @@ public class PlayerHaraketController : MonoBehaviour
         rb.velocity = Vector2.zero;
         playerCanverdimi = true;
 
-        anim.SetTrigger("canVerdi");
+        anim.SetTrigger("canVerdi"); // Animasyonu tetikle
 
         StartCoroutine(PlayerYokEtSahneYenile());
     }
