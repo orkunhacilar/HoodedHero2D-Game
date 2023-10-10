@@ -17,6 +17,9 @@ public class BlockController : MonoBehaviour
     bool animasyonBaslasinmi;
     bool hareketEtsinmi = true;
 
+    public GameObject coinPrefab;
+    Vector3 coinPos;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -27,6 +30,9 @@ public class BlockController : MonoBehaviour
         orjinalPos = transform.position;
         animPos = transform.position;
         animPos.y += .15f;
+
+        coinPos = transform.position;
+        coinPos.y += 1f; // blogun icinde coini 1f kadar y de yukari cikar
     }
 
     private void Update()
@@ -48,6 +54,8 @@ public class BlockController : MonoBehaviour
                 anim.Play("Mat");
                 animasyonBaslasinmi = true;
                 hareketEtsinmi = false;
+
+                Instantiate(coinPrefab, coinPos, Quaternion.identity); // yarat dedik bu nesneyi bu pozisyonda  // Quaternion.identity -> rotasyonsuz yarat
 
 
             }
