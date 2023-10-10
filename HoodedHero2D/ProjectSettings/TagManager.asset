@@ -47,6 +47,9 @@ TagManager:
   - name: Zemin
     uniqueID: 2134515425
     locked: 0
+  - name: ZeminObjeler
+    uniqueID: 589260321
+    locked: 0
   - name: Objeler
     uniqueID: 292656527
     locked: 0

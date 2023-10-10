@@ -11,6 +11,7 @@ public class HasarController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             PlayerHealthController.instance.CaniAzaltFNC();
+            PlayerHaraketController.instance.GeriTepkiFNC();
         }
     }
 }
