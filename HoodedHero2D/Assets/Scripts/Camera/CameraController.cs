@@ -11,7 +11,9 @@ public class CameraController : MonoBehaviour
 
     float halfYukseklik, halfGenislik;
 
-
+    Vector2 sonPos;
+    [SerializeField]
+    Transform backgrounds;
 
     private void Awake()
     {
@@ -24,7 +26,9 @@ public class CameraController : MonoBehaviour
 
         halfGenislik = halfYukseklik * Camera.main.aspect;
 
-        print(halfYukseklik);
+        sonPos = transform.position;
+
+
     }
 
     private void Update()
@@ -37,6 +41,17 @@ public class CameraController : MonoBehaviour
                 transform.position.z); //Kamera Karakteri izlesin.
 
         }
+
+        BackgroundHaraketFNC();
+    }
+
+    void BackgroundHaraketFNC()
+    {
+        Vector2 aradakiFark = new Vector2(transform.position.x - sonPos.x, transform.position.y - sonPos.y);
+
+        backgrounds.position += new Vector3(aradakiFark.x, aradakiFark.y, 0f);
+
+        sonPos = transform.position;
     }
 
     
