@@ -4532,9 +4532,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2099dc3f2e0474d9c56457fed4616f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalPlayer: {fileID: 488208029}
+  kilicPlayer: {fileID: 1771801259}
   zeminKontrolNoktasi: {fileID: 1574617373}
-  anim: {fileID: 488208032}
-  sr: {fileID: 488208031}
+  NormalAnim: {fileID: 488208032}
+  kilicAnim: {fileID: 1771801261}
+  normalSprite: {fileID: 488208031}
+  kilicSprite: {fileID: 1771801262}
   zeminMaske:
     serializedVersion: 2
     m_Bits: 64

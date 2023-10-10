@@ -11,13 +11,16 @@ public class PlayerHaraketController : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
+    GameObject normalPlayer, kilicPlayer;
+
+    [SerializeField]
     Transform zeminKontrolNoktasi;
 
     [SerializeField]
-    Animator anim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
+    Animator NormalAnim, kilicAnim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
 
     [SerializeField]
-    SpriteRenderer sr;
+    SpriteRenderer normalSprite, kilicSprite;
 
     public LayerMask zeminMaske; // Tag sectirir gibi 2 d oldugu icin layer sectiriyor bize public bir sekilde
 
@@ -54,7 +57,7 @@ public class PlayerHaraketController : MonoBehaviour
             ZiplaFNC();
             YonuDegistirFNC();
 
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1f); 
+            normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, 1f); 
         }
         else
         {
@@ -70,11 +73,21 @@ public class PlayerHaraketController : MonoBehaviour
             }
         }
 
-        
+        if (normalPlayer.activeSelf)
+        {
+            NormalAnim.SetBool("zemindemi", zemindemi);
+            NormalAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+        }
+        if (kilicPlayer.activeSelf)
+        {
+            kilicAnim.SetBool("zemindemi", zemindemi);
+            kilicAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+        }
 
 
-        anim.SetBool("zemindemi", zemindemi);
-        anim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+
+
+
     }
 
     void HareketEt()
@@ -126,7 +139,7 @@ public class PlayerHaraketController : MonoBehaviour
     {
         geriTepkiSayaci = geriTepkiSuresi;
 
-        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f); // karakteri dmg yerse opaklastir.
+        normalSprite.color = new Color(normalSprite.color.r, normalSprite.color.g, normalSprite.color.b, 0.5f); // karakteri dmg yerse opaklastir.
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
@@ -135,7 +148,18 @@ public class PlayerHaraketController : MonoBehaviour
         rb.velocity = Vector2.zero;
         playerCanverdimi = true;
 
-        anim.SetTrigger("canVerdi"); // Animasyonu tetikle
+        if (normalPlayer.activeSelf)
+        {
+            NormalAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
+        }
+        if (kilicPlayer.activeSelf)
+        {
+            kilicAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
+        }
+
+
+
+       
 
         StartCoroutine(PlayerYokEtSahneYenile());
     }
