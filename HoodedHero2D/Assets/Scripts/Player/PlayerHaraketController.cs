@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHaraketController : MonoBehaviour
 {
@@ -32,15 +33,21 @@ public class PlayerHaraketController : MonoBehaviour
 
     bool yonSagdami;
 
+    bool playerCanverdimi;
+
     private void Awake()
     {
         instance = this;
 
         rb = GetComponent<Rigidbody2D>();
+        playerCanverdimi = false;
     }
 
     void Update()
     {
+        if (playerCanverdimi)
+            return;
+
         if (geriTepkiSayaci <= 0)
         {
             HareketEt();
@@ -121,5 +128,28 @@ public class PlayerHaraketController : MonoBehaviour
 
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.5f); // karakteri dmg yerse opaklastir.
         rb.velocity = new Vector2(0, rb.velocity.y);
+    }
+
+    public void PlayerCanVerdiFNC()
+    {
+        rb.velocity = Vector2.zero;
+        playerCanverdimi = true;
+
+        anim.SetTrigger("canVerdi");
+
+        StartCoroutine(PlayerYokEtSahneYenile());
+    }
+
+    IEnumerator PlayerYokEtSahneYenile()
+    {
+        yield return new WaitForSeconds(2f);
+
+        //  Destroy(gameObject); // BOYLE YAPARSAN SCRIPTIDE SILMIS OLUYON CUNKU ICINDE SCRIPT VAR
+
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
