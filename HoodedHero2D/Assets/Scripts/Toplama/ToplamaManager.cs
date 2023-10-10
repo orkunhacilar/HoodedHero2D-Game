@@ -8,6 +8,10 @@ public class ToplamaManager : MonoBehaviour
     [SerializeField]
     bool coinmi;
 
+
+    [SerializeField]
+    GameObject coinEfekt;
+
     bool toplandimi;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,6 +20,7 @@ public class ToplamaManager : MonoBehaviour
         {
             toplandimi = true;
             Destroy(gameObject);
+            Instantiate(coinEfekt, transform.position, Quaternion.identity);
         }
     }
 
