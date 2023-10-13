@@ -22,6 +22,9 @@ public class PlayerHaraketController : MonoBehaviour
     [SerializeField]
     SpriteRenderer normalSprite, kilicSprite;
 
+    [SerializeField]
+    GameObject kilicVurusBoxObje;
+
     public LayerMask zeminMaske; // Tag sectirir gibi 2 d oldugu icin layer sectiriyor bize public bir sekilde
 
     public float haraketHizi;
@@ -47,6 +50,8 @@ public class PlayerHaraketController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         playerCanverdimi = false;
+
+        kilicVurusBoxObje.SetActive(false);
     }
 
     void Update()
@@ -72,6 +77,7 @@ public class PlayerHaraketController : MonoBehaviour
             if(Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
             {
                 kiliciVurdumu = true;
+                kilicVurusBoxObje.SetActive(true);
             }
             else
             {
