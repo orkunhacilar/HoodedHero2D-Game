@@ -16,6 +16,10 @@ public class OrumcekController : MonoBehaviour
 
     int kacinciPozisyon;
 
+    Transform hedefPlayer;
+
+    public float takipMesafesi = 5f;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -23,6 +27,8 @@ public class OrumcekController : MonoBehaviour
 
     private void Start()
     {
+        hedefPlayer = GameObject.Find("Player").transform;
+        
         foreach (Transform pos in pozisyonlar)
         {
             pos.parent = null; //pozisyonlari o objeden disari cikariyo ki orumcekle beraber pozisyonlar degismesin. // parentini null demek pos1 pos2 yi orumcek gameobjesinin disina al demek
@@ -41,25 +47,46 @@ public class OrumcekController : MonoBehaviour
         }
         else
         {
-            anim.SetBool("hareketEtsinmi", true);
-
-            if (transform.position.x > pozisyonlar[kacinciPozisyon].position.x)
+            if(hedefPlayer.position.x > pozisyonlar[0].position.x && hedefPlayer.position.x < pozisyonlar[1].position.x)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                transform.position = Vector3.MoveTowards(transform.position, hedefPlayer.position, orumcekHizi * Time.deltaTime);
+
+                anim.SetBool("hareketEtsinmi", true);
+
+                if (transform.position.x > hedefPlayer.position.x)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (transform.position.x < hedefPlayer.position.x)
+                {
+                    transform.localScale = Vector3.one;
+
+                }
             }
-            else if(transform.position.x < pozisyonlar[kacinciPozisyon].position.x)
+            else
             {
-                transform.localScale = Vector3.one;
-                
+
+                anim.SetBool("hareketEtsinmi", true);
+
+                if (transform.position.x > pozisyonlar[kacinciPozisyon].position.x)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (transform.position.x < pozisyonlar[kacinciPozisyon].position.x)
+                {
+                    transform.localScale = Vector3.one;
+
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, pozisyonlar[kacinciPozisyon].position, orumcekHizi * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, pozisyonlar[kacinciPozisyon].position) < 0.1f)
+                {
+                    beklemeSayac = beklemeSuresi;
+                    PozisyonuDegistir();
+                }
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, pozisyonlar[kacinciPozisyon].position, orumcekHizi * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, pozisyonlar[kacinciPozisyon].position) < 0.1f)
-            {
-                beklemeSayac = beklemeSuresi;
-                PozisyonuDegistir();
-            }
         }
     }
 
@@ -69,5 +96,12 @@ public class OrumcekController : MonoBehaviour
 
         if (kacinciPozisyon >= pozisyonlar.Length)
             kacinciPozisyon = 0;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+
+        Gizmos.DrawWireSphere(transform.position, takipMesafesi);
     }
 }
