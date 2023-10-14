@@ -14,6 +14,9 @@ public class BatController : MonoBehaviour
     [SerializeField]
     Transform hedefPlayer;
 
+    [SerializeField]
+    GameObject iksirPrefab;
+
     Animator anim;
     Rigidbody2D rb;
 
@@ -25,6 +28,11 @@ public class BatController : MonoBehaviour
 
     Vector2 haraketYonu;
 
+   
+    public int maxSaglik;
+
+    public int gecerliSaglik;
+
     private void Awake()
     {
         hedefPlayer = GameObject.Find("Player").transform;
@@ -33,36 +41,84 @@ public class BatController : MonoBehaviour
         batCollider = GetComponent<BoxCollider2D>();
     }
 
+    private void Start()
+    {
+        gecerliSaglik = maxSaglik;
+    }
+
     private void Update()
     {
         if (atakYapmaSayac < 0)
         {
-            mesafe = Vector2.Distance(transform.position, hedefPlayer.position);
 
-            if (mesafe < takipMesafesi)
+            if(hedefPlayer && gecerliSaglik>0 && !PlayerHaraketController.instance.playerCanverdimi)
             {
-                anim.SetTrigger("ucusaGecti");
+                mesafe = Vector2.Distance(transform.position, hedefPlayer.position);
 
-                haraketYonu = hedefPlayer.position - transform.position; //yarasanin adami takip etmesi icin
-
-
-                // YARASANIN TAKIP EDERKENKI SCALE DEGERINI ( YON ) DEGISTIRME 
-                if(transform.position.x > hedefPlayer.position.x)
+                if (mesafe < takipMesafesi)
                 {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }else if (transform.position.x < hedefPlayer.position.x)
-                {
-                    transform.localScale = Vector3.one;
+                    anim.SetTrigger("ucusaGecti");
+
+                    haraketYonu = hedefPlayer.position - transform.position; //yarasanin adami takip etmesi icin
+
+
+                    // YARASANIN TAKIP EDERKENKI SCALE DEGERINI ( YON ) DEGISTIRME 
+                    if (transform.position.x > hedefPlayer.position.x)
+                    {
+                        transform.localScale = new Vector3(-1, 1, 1);
+                    }
+                    else if (transform.position.x < hedefPlayer.position.x)
+                    {
+                        transform.localScale = Vector3.one;
+                    }
+
+
+
+                    rb.velocity = haraketYonu * batHiz; //takip etme hizi
                 }
-
-
-
-                rb.velocity = haraketYonu * batHiz; //takip etme hizi
             }
+
+            
         }
         else
         {
             atakYapmaSayac -= Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (batCollider.IsTouchingLayers(LayerMask.GetMask("PlayerLayer")))
+        {
+            if (collision.CompareTag("Player"))
+            {
+                rb.velocity = Vector2.zero;
+                atakYapmaSayac = atakYapmaSureri;
+                anim.SetTrigger("atakYapti");
+
+                collision.GetComponent<PlayerHaraketController>().GeriTepkiFNC();
+                collision.GetComponent<PlayerHealthController>().CaniAzaltFNC();
+
+            }
+        }
+    }
+
+    public void CaniAzaltFNC()
+    {
+        gecerliSaglik--;
+        atakYapmaSayac = atakYapmaSureri;
+
+        rb.velocity = Vector2.zero;
+
+        if(gecerliSaglik <= 0)
+        {
+            gecerliSaglik = 0;
+            batCollider.enabled = false;
+
+            Instantiate(iksirPrefab, transform.position, Quaternion.identity);
+
+            anim.SetTrigger("canVerdi");
+            Destroy(gameObject, 3f);
         }
     }
 

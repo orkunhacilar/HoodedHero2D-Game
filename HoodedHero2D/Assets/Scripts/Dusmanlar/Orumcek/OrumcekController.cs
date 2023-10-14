@@ -33,6 +33,9 @@ public class OrumcekController : MonoBehaviour
 
     Rigidbody2D rb;
 
+    [SerializeField]
+    GameObject iksirPrefab;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -164,6 +167,9 @@ public class OrumcekController : MonoBehaviour
         {
             atakYapabilirmi = false;
             gecerliSaglik = 0;
+
+            Instantiate(iksirPrefab, transform.position, Quaternion.identity);
+
             anim.SetTrigger("canVerdi");
             orumcekCollider.enabled = false; // box collideri kapatma
             orumcekSlider.gameObject.SetActive(false); // *

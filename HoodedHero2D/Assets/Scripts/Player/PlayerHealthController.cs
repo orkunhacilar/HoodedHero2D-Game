@@ -38,6 +38,18 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    public void CaniArtirFNC()
+    {
+        gecerliSaglik++;
+
+        if (gecerliSaglik >= maxSaglik)
+            gecerliSaglik = maxSaglik;
+
+
+
+        UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
+    }
+
     // Update is called once per frame
     void Update()
     {

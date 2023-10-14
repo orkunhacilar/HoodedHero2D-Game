@@ -3402,6 +3402,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4790,6 +4798,7 @@ MonoBehaviour:
   ziplamaGucu: 5
   geriTepkiSuresi: 0.5
   geriTepkiGucu: 5
+  playerCanverdimi: 0
 --- !u!61 &754461627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4862,6 +4871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kilicVurusBox: {fileID: 115825755}
+  parlamaEfekti: {fileID: 8241403257249877600, guid: 796165704e7da40a5876ac3312ca1504, type: 3}
 --- !u!1 &798849451
 GameObject:
   m_ObjectHideFlags: 0
@@ -5892,6 +5902,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5990,30 +6008,14 @@ GameObject:
   - component: {fileID: 1214795929}
   - component: {fileID: 1214795928}
   - component: {fileID: 1214795927}
-  - component: {fileID: 1214795926}
-  m_Layer: 0
+  - component: {fileID: 1214795932}
+  m_Layer: 8
   m_Name: bat
-  m_TagString: Untagged
+  m_TagString: Bat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1214795926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214795925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cdedf1ade3e4b88ae67dddd832ab9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  takipMesafesi: 8
-  batHiz: 3
-  hedefPlayer: {fileID: 0}
-  atakYapmaSureri: 0.25
 --- !u!50 &1214795927
 Rigidbody2D:
   serializedVersion: 4
@@ -6174,6 +6176,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1214795932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214795925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cdedf1ade3e4b88ae67dddd832ab9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takipMesafesi: 8
+  batHiz: 1
+  hedefPlayer: {fileID: 754461625}
+  iksirPrefab: {fileID: 997930763499468554, guid: e07840024cdd9458a85351afab3b5adf, type: 3}
+  atakYapmaSureri: 0.25
+  maxSaglik: 3
+  gecerliSaglik: 0
 --- !u!1 &1220098591
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,6 +6542,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6877,6 +6906,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7442,6 +7479,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7678,15 +7723,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1191704373377683900, guid: bcfb32be40dfb4dfe818ef520c254843, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3064557502157253053, guid: bcfb32be40dfb4dfe818ef520c254843, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3064557502157253053, guid: bcfb32be40dfb4dfe818ef520c254843, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4115133504392801868, guid: bcfb32be40dfb4dfe818ef520c254843, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8143,6 +8188,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: coinmi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5682496265771881177, guid: 8b337d21dc3ad4ad6a93b31f684d8483, type: 3}
+      propertyPath: patlamaEfekti
+      value: 
+      objectReference: {fileID: 6061905525458710898, guid: 3e10ebdd244e449d38e02ca9bdd07a0c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

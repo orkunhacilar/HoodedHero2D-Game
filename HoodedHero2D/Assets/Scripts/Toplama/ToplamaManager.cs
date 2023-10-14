@@ -6,11 +6,11 @@ public class ToplamaManager : MonoBehaviour
 {
 
     [SerializeField]
-    bool coinmi;
+    bool coinmi,iksirmi;
 
 
     [SerializeField]
-    GameObject coinEfekt;
+    GameObject patlamaEfekti;
 
     bool toplandimi;
 
@@ -18,14 +18,28 @@ public class ToplamaManager : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !toplandimi)
         {
-            toplandimi = true;
+            if (coinmi)
+            {
+                toplandimi = true;
 
-            GameManager.instance.toplananCointAdet++;
+                GameManager.instance.toplananCointAdet++;
 
-            UiManager.instance.CoinAdetGuncelle();
+                UiManager.instance.CoinAdetGuncelle();
 
-            Destroy(gameObject);
-            Instantiate(coinEfekt, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                Instantiate(patlamaEfekti, transform.position, Quaternion.identity);
+            }
+
+            if (iksirmi)
+            {
+                toplandimi = true;
+
+                PlayerHealthController.instance.CaniArtirFNC();
+
+                Destroy(gameObject);
+                Instantiate(patlamaEfekti, transform.position, Quaternion.identity);
+            }
+           
         }
     }
 
