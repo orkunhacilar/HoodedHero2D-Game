@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrumcekController : MonoBehaviour
 {
     [SerializeField]
     Transform[] pozisyonlar;
+
+    [SerializeField]
+    Slider orumcekSlider;
+
+    public int maxSaglik;
+    int gecerliSaglik;
 
     public float orumcekHizi;
 
@@ -20,13 +27,28 @@ public class OrumcekController : MonoBehaviour
 
     public float takipMesafesi = 5f;
 
+    BoxCollider2D orumcekCollider;
+
+    bool atakYapabilirmi;
+
+    Rigidbody2D rb;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        orumcekCollider = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
+        gecerliSaglik = maxSaglik;
+
+
+        orumcekSlider.maxValue = maxSaglik;
+        SliderGuncelle();
+
+        atakYapabilirmi = true;
         hedefPlayer = GameObject.Find("Player").transform;
         
         foreach (Transform pos in pozisyonlar)
@@ -38,6 +60,9 @@ public class OrumcekController : MonoBehaviour
 
     private void Update()
     {
+        if (!atakYapabilirmi)
+            return;
+
         if (beklemeSayac > 0)
         {
             //orumcek verilen noktada duruyor
@@ -103,5 +128,68 @@ public class OrumcekController : MonoBehaviour
         Gizmos.color = Color.green;
 
         Gizmos.DrawWireSphere(transform.position, takipMesafesi);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (orumcekCollider.IsTouchingLayers(LayerMask.GetMask("PlayerLayer")) && atakYapabilirmi) //Orumcek collision carparsa layermaski PlayerLayer Olan birine
+        {
+            atakYapabilirmi = false;
+            anim.SetTrigger("atakYapti");
+            collision.GetComponent<PlayerHaraketController>().GeriTepkiFNC();
+            collision.GetComponent<PlayerHealthController>().CaniAzaltFNC();
+
+            StartCoroutine(YenidenAtakYapsin());
+        }
+    }
+
+    IEnumerator YenidenAtakYapsin()
+    {
+        yield return new WaitForSeconds(1f);
+       if(gecerliSaglik>0)
+            atakYapabilirmi = true;
+    }
+
+    public IEnumerator GeriTepkiFNC()
+    {
+        atakYapabilirmi = false;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(.1f);
+
+        gecerliSaglik--;
+
+        SliderGuncelle();
+
+        if (gecerliSaglik <= 0)
+        {
+            atakYapabilirmi = false;
+            gecerliSaglik = 0;
+            anim.SetTrigger("canVerdi");
+            orumcekCollider.enabled = false; // box collideri kapatma
+            orumcekSlider.gameObject.SetActive(false); // *
+            Destroy(gameObject, 2f);
+        }
+        else
+        {
+
+            for(int i=0; i<5; i++)
+            {
+                rb.velocity = new Vector2(-transform.localScale.x + i, rb.velocity.y); // orumcegi vurduktan sonra onu geriye dogru firlatma
+                yield return new WaitForSeconds(0.05f);
+            }
+
+
+            anim.SetBool("hareketEtsinmi", false);
+
+            yield return new WaitForSeconds(0.25f);
+
+            rb.velocity = Vector2.zero;
+            atakYapabilirmi = true;
+        }
+    }
+
+    void SliderGuncelle()
+    {
+        orumcekSlider.value = gecerliSaglik;
     }
 }
