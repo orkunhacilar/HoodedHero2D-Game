@@ -3772,7 +3772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &415801410
 Transform:
   m_ObjectHideFlags: 0
@@ -4198,7 +4198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &488208030
 Transform:
   m_ObjectHideFlags: 0
@@ -4876,6 +4876,7 @@ Transform:
   - {fileID: 1771801260}
   - {fileID: 1574617373}
   - {fileID: 415801410}
+  - {fileID: 1547510227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &754461626
@@ -4909,6 +4910,8 @@ MonoBehaviour:
   geriTepkiSuresi: 0.5
   geriTepkiGucu: 5
   playerCanverdimi: 0
+  atilacakMizrak: {fileID: 2151204276485499960, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+  mizrakCikisNoktasi: {fileID: 1547510227}
 --- !u!61 &754461627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6733,6 +6736,37 @@ Transform:
   - {fileID: 10101014}
   m_Father: {fileID: 553847929}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1547510226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1547510227}
+  m_Layer: 7
+  m_Name: mizrakCikisNoktasi
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1547510227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547510226}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.641, y: 0.585, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 754461625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574617372
 GameObject:
   m_ObjectHideFlags: 0
@@ -7424,7 +7458,7 @@ GameObject:
   - component: {fileID: 2023799438}
   m_Layer: 0
   m_Name: Boa
-  m_TagString: Untagged
+  m_TagString: Boa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8419,6 +8453,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9501530098f724c1d841e18781a8a97d, type: 3}
+--- !u!1001 &7667205761899171490
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150336328809489894, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151204276485499960, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
+      propertyPath: m_Name
+      value: atilacakMizrak
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c9a3fd71de1042ad88b325abc6138d4, type: 3}
 --- !u!1001 &8607463801805385906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8506,3 +8597,4 @@ SceneRoots:
   - {fileID: 4591595633424025479}
   - {fileID: 7407213107230790246}
   - {fileID: 2023799444}
+  - {fileID: 7667205761899171490}

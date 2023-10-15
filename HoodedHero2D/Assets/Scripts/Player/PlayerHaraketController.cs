@@ -43,6 +43,12 @@ public class PlayerHaraketController : MonoBehaviour
 
     bool kiliciVurdumu;
 
+    [SerializeField]
+    GameObject atilacakMizrak;
+
+    [SerializeField]
+    Transform mizrakCikisNoktasi;
+
     private void Awake()
     {
         instance = this;
@@ -89,9 +95,10 @@ public class PlayerHaraketController : MonoBehaviour
             }
 
 
-           if (Input.GetMouseButtonDown(0) && mizrakPlayer.activeSelf) ///////////////////
+           if (Input.GetKeyDown(KeyCode.W)&& mizrakPlayer.activeSelf) ///////////////////
             {
-                
+                mizrakAnim.SetTrigger("mizrakAtti");
+                Invoke("MizragiFirlat", .5f);
             }
 
         }
@@ -138,10 +145,18 @@ public class PlayerHaraketController : MonoBehaviour
 
     }
 
+    void MizragiFirlat()
+    {
+        GameObject mizrak = Instantiate(atilacakMizrak, mizrakCikisNoktasi.position, mizrakCikisNoktasi.rotation);
+        mizrak.transform.localScale = transform.localScale; // karakterle ayni local scale cunku her iki yonede firlatabilmem lazim
+        mizrak.GetComponent<Rigidbody2D>().velocity = mizrakCikisNoktasi.right * transform.localScale.x * 7f;
+    }
+
     void HareketEt()
     {
         float h = Input.GetAxis("Horizontal"); //0 ve 1 arasinda deger aliyor otomatik atanmistir yon tuslari ya da a d ile deger alir
         rb.velocity = new Vector2(h * haraketHizi, rb.velocity.y);
+        
 
         
     }

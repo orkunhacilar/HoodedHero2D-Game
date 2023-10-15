@@ -57,4 +57,19 @@ public class BoaController : MonoBehaviour
             anim.SetBool("kossunmu", false);
         }
     }
+
+    public void BoaOldu()
+    {
+        oldumu = true;
+        anim.SetTrigger("canVerdi");
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+
+        foreach (BoxCollider2D box in GetComponents<BoxCollider2D>()) // boanin icinde 2 tane box collider var diye bu sekilde kapatabiliriz.
+        {
+            box.enabled = false;
+            
+        }
+        Destroy(gameObject, 3f);
+    }
 }
