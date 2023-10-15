@@ -150,6 +150,8 @@ public class PlayerHaraketController : MonoBehaviour
         GameObject mizrak = Instantiate(atilacakMizrak, mizrakCikisNoktasi.position, mizrakCikisNoktasi.rotation);
         mizrak.transform.localScale = transform.localScale; // karakterle ayni local scale cunku her iki yonede firlatabilmem lazim
         mizrak.GetComponent<Rigidbody2D>().velocity = mizrakCikisNoktasi.right * transform.localScale.x * 7f;
+
+        Invoke("HerseyiKapatNormaliAc", .1f);
     }
 
     void HareketEt()
@@ -272,6 +274,13 @@ public class PlayerHaraketController : MonoBehaviour
         normalPlayer.SetActive(false);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(true);
+    }
+
+    public void HerseyiKapatNormaliAc()
+    {
+        normalPlayer.SetActive(true);
+        kilicPlayer.SetActive(false);
+        mizrakPlayer.SetActive(false);
     }
     
 
