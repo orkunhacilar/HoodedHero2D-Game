@@ -98,6 +98,7 @@ public class PlayerHaraketController : MonoBehaviour
            if (Input.GetKeyDown(KeyCode.W)&& mizrakPlayer.activeSelf) ///////////////////
             {
                 mizrakAnim.SetTrigger("mizrakAtti");
+                
                 Invoke("MizragiFirlat", .5f);
             }
 
@@ -152,6 +153,8 @@ public class PlayerHaraketController : MonoBehaviour
         mizrak.GetComponent<Rigidbody2D>().velocity = mizrakCikisNoktasi.right * transform.localScale.x * 7f;
 
         Invoke("HerseyiKapatNormaliAc", .1f);
+
+        
     }
 
     void HareketEt()
@@ -278,9 +281,11 @@ public class PlayerHaraketController : MonoBehaviour
 
     public void HerseyiKapatNormaliAc()
     {
+       
         normalPlayer.SetActive(true);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(false);
+
     }
 
     public void PlayerHareketsizYap()
