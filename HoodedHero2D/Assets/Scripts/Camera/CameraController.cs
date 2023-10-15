@@ -42,20 +42,16 @@ public class CameraController : MonoBehaviour
 
         }
 
-        backgrounds.transform.position = new Vector3(transform.position.x, transform.position.y+4, backgrounds.transform.position.z); // Arka plan kamera ile gelsin
+        if (backgrounds != null)
+        {
+           backgrounds.transform.position = new Vector3(transform.position.x, transform.position.y+4, backgrounds.transform.position.z); // Arka plan kamera ile gelsin
+        }
 
-        // T BackgroundHaraketFNC();
+
+
+
     }
 
-   /* T void BackgroundHaraketFNC()
-    {
-        
-        Vector2 aradakiFark = new Vector2(transform.position.x - sonPos.x, transform.position.y - sonPos.y);
-
-        backgrounds.position += new Vector3(aradakiFark.x, aradakiFark.y, 0f);
-
-        sonPos = transform.position;
-    } */
- 
+     
     
 }

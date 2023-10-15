@@ -11,16 +11,16 @@ public class PlayerHaraketController : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    GameObject normalPlayer, kilicPlayer, mizrakPlayer;
+    GameObject normalPlayer, kilicPlayer, mizrakPlayer, okPlayer;
 
     [SerializeField]
     Transform zeminKontrolNoktasi;
 
     [SerializeField]
-    Animator NormalAnim, kilicAnim, mizrakAnim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
+    Animator NormalAnim, kilicAnim, mizrakAnim, okAnim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
 
     [SerializeField]
-    SpriteRenderer normalSprite, kilicSprite,mizrakSprite;
+    SpriteRenderer normalSprite, kilicSprite,mizrakSprite,okSprite;
 
     [SerializeField]
     GameObject kilicVurusBoxObje;
@@ -83,6 +83,10 @@ public class PlayerHaraketController : MonoBehaviour
             {
                 mizrakSprite.color = new Color(mizrakSprite.color.r, mizrakSprite.color.g, mizrakSprite.color.b, 1f);
             }
+            if (okPlayer.activeSelf)
+            {
+                okSprite.color = new Color(okSprite.color.r, okSprite.color.g, okSprite.color.b, 1f);
+            }
 
             if (Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
             {
@@ -133,6 +137,13 @@ public class PlayerHaraketController : MonoBehaviour
         {
             mizrakAnim.SetBool("zemindemi", zemindemi);
             mizrakAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+
+        }
+
+        if (okPlayer.activeSelf)
+        {
+            okAnim.SetBool("zemindemi", zemindemi);
+            okAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
 
         }
 
@@ -222,6 +233,11 @@ public class PlayerHaraketController : MonoBehaviour
             mizrakSprite.color = new Color(mizrakSprite.color.r, mizrakSprite.color.g, mizrakSprite.color.b, .5f);
         }
 
+        if (okPlayer.activeSelf)
+        {
+            okSprite.color = new Color(okSprite.color.r, okSprite.color.g, okSprite.color.b, .5f);
+        }
+
 
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
@@ -243,7 +259,10 @@ public class PlayerHaraketController : MonoBehaviour
         {
             mizrakAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
         }
-
+        if (okPlayer.activeSelf)
+        {
+            okAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
+        }
 
 
 
@@ -269,6 +288,7 @@ public class PlayerHaraketController : MonoBehaviour
         normalPlayer.SetActive(false);
         mizrakPlayer.SetActive(false);
         kilicPlayer.SetActive(true);
+        okPlayer.SetActive(false);
 
     }
 
@@ -277,6 +297,7 @@ public class PlayerHaraketController : MonoBehaviour
         normalPlayer.SetActive(false);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(true);
+        okPlayer.SetActive(false);
     }
 
     public void HerseyiKapatNormaliAc()
@@ -285,6 +306,16 @@ public class PlayerHaraketController : MonoBehaviour
         normalPlayer.SetActive(true);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(false);
+        okPlayer.SetActive(false);
+
+    }
+    public void HerseyiKapatOkuAc()
+    {
+
+        normalPlayer.SetActive(false);
+        kilicPlayer.SetActive(false);
+        mizrakPlayer.SetActive(false);
+        okPlayer.SetActive(true);
 
     }
 
@@ -305,6 +336,11 @@ public class PlayerHaraketController : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             mizrakAnim.SetFloat("HaraketHizi", 0f);
+        }
+        if (okPlayer.activeSelf)
+        {
+            rb.velocity = Vector2.zero;
+            okAnim.SetFloat("HaraketHizi", 0f);
         }
 
     }
