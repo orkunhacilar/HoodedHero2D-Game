@@ -6,7 +6,7 @@ public class PlayerAraclarContoller : MonoBehaviour
 {
 
     [SerializeField]
-    bool kilicmi, mizrakmi;
+    bool kilicmi, mizrakmi, okmu;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,6 +24,12 @@ public class PlayerAraclarContoller : MonoBehaviour
             {
 
                 collision.GetComponent<PlayerHaraketController>().HerseyiKapatMizrakAc(); 
+            }
+
+            if (collision != null && okmu)
+            {
+
+                collision.GetComponent<PlayerHaraketController>().HerseyiKapatOkuAc();
             }
             Destroy(gameObject);
         }

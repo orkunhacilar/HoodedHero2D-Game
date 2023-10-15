@@ -49,6 +49,12 @@ public class PlayerHaraketController : MonoBehaviour
     [SerializeField]
     Transform mizrakCikisNoktasi;
 
+    [SerializeField]
+    GameObject atilacakOk;
+
+    [SerializeField]
+    Transform okCikisNoktasi;
+
     private void Awake()
     {
         instance = this;
@@ -104,6 +110,12 @@ public class PlayerHaraketController : MonoBehaviour
                 mizrakAnim.SetTrigger("mizrakAtti");
                 
                 Invoke("MizragiFirlat", .5f);
+            }
+
+           if(Input.GetKeyDown(KeyCode.E) && okPlayer.activeSelf)
+            {
+                okAnim.SetTrigger("okAtti");
+                Invoke("OkuFirlat", .7f);
             }
 
         }
@@ -166,6 +178,14 @@ public class PlayerHaraketController : MonoBehaviour
         Invoke("HerseyiKapatNormaliAc", .1f);
 
         
+    }
+
+    void OkuFirlat()
+    {
+        GameObject okObje = Instantiate(atilacakOk, okCikisNoktasi.position, okCikisNoktasi.rotation);
+        okObje.transform.localScale = transform.localScale;
+
+        okObje.GetComponent<Rigidbody2D>().velocity = okCikisNoktasi.right * transform.localScale.x * 15f;
     }
 
     void HareketEt()
