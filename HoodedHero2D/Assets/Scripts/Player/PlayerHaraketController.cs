@@ -11,16 +11,16 @@ public class PlayerHaraketController : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    GameObject normalPlayer, kilicPlayer;
+    GameObject normalPlayer, kilicPlayer, mizrakPlayer;
 
     [SerializeField]
     Transform zeminKontrolNoktasi;
 
     [SerializeField]
-    Animator NormalAnim, kilicAnim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
+    Animator NormalAnim, kilicAnim, mizrakAnim;  //animastonlarimi kontrol etmek icin aliyorum ve orda olusturdugum fonksyonlara erisip kullanacagim.
 
     [SerializeField]
-    SpriteRenderer normalSprite, kilicSprite;
+    SpriteRenderer normalSprite, kilicSprite,mizrakSprite;
 
     [SerializeField]
     GameObject kilicVurusBoxObje;
@@ -73,8 +73,12 @@ public class PlayerHaraketController : MonoBehaviour
             {
                 kilicSprite.color = new Color(kilicSprite.color.r, kilicSprite.color.g, kilicSprite.color.b, 1f);
             }
+            if (mizrakPlayer.activeSelf)
+            {
+                mizrakSprite.color = new Color(mizrakSprite.color.r, mizrakSprite.color.g, mizrakSprite.color.b, 1f);
+            }
 
-            if(Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
+            if (Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
             {
                 kiliciVurdumu = true;
                 kilicVurusBoxObje.SetActive(true);
@@ -82,6 +86,12 @@ public class PlayerHaraketController : MonoBehaviour
             else
             {
                 kiliciVurdumu = false;
+            }
+
+
+           if (Input.GetMouseButtonDown(0) && mizrakPlayer.activeSelf) ///////////////////
+            {
+                
             }
 
         }
@@ -108,6 +118,13 @@ public class PlayerHaraketController : MonoBehaviour
         {
             kilicAnim.SetBool("zemindemi", zemindemi);
             kilicAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
+
+        }
+
+        if (mizrakPlayer.activeSelf)
+        {
+            mizrakAnim.SetBool("zemindemi", zemindemi);
+            mizrakAnim.SetFloat("HaraketHizi", Mathf.Abs(rb.velocity.x)); //Mathf.Abs ile mutlak deger aliyorum cunku x te - ye dogruda haraket edebiliyorum.
 
         }
 
@@ -180,6 +197,11 @@ public class PlayerHaraketController : MonoBehaviour
             kilicSprite.color = new Color(kilicSprite.color.r, kilicSprite.color.g, kilicSprite.color.b, .5f);
         }
 
+        if (mizrakPlayer.activeSelf)
+        {
+            mizrakSprite.color = new Color(mizrakSprite.color.r, mizrakSprite.color.g, mizrakSprite.color.b, .5f);
+        }
+
 
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
@@ -197,10 +219,14 @@ public class PlayerHaraketController : MonoBehaviour
         {
             kilicAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
         }
+        if (mizrakPlayer.activeSelf)
+        {
+            mizrakAnim.SetTrigger("canVerdi"); // Animasyonu tetikle
+        }
 
 
 
-       
+
 
         StartCoroutine(PlayerYokEtSahneYenile());
     }
@@ -221,7 +247,16 @@ public class PlayerHaraketController : MonoBehaviour
     public void TakeSword()
     {
         normalPlayer.SetActive(false);
+        mizrakPlayer.SetActive(false);
         kilicPlayer.SetActive(true);
+
+    }
+
+    public void HerseyiKapatMizrakAc()
+    {
+        normalPlayer.SetActive(false);
+        kilicPlayer.SetActive(false);
+        mizrakPlayer.SetActive(true);
     }
     
 
