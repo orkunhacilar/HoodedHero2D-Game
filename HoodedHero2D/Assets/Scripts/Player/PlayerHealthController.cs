@@ -19,8 +19,11 @@ public class PlayerHealthController : MonoBehaviour
     {
         gecerliSaglik = maxSaglik;
 
-        UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
-   
+        if (UiManager.instance != null)
+        {
+            UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
+        }
+
     }
 
 
