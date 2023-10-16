@@ -38,6 +38,7 @@ public class SandikController : MonoBehaviour
 
                 GetComponent<BoxCollider2D>().enabled = false;
                 anim.SetTrigger("parcalanma");
+                SesManager.instance.SesEfektiCikar(9);
 
                 for (int i = 0; i < 3; i++) // Kasa icindeki altinlari saga sola sicratmak icin yazdim
                 {

@@ -30,6 +30,7 @@ public class PlayerHealthController : MonoBehaviour
     public void CaniAzaltFNC()
     {
         gecerliSaglik--;
+        SesManager.instance.SesEfektiCikar(3);
         UiManager.instance.SlideriGuncelle(gecerliSaglik, maxSaglik);
 
         if (gecerliSaglik <= 0)
@@ -44,7 +45,7 @@ public class PlayerHealthController : MonoBehaviour
     public void CaniArtirFNC()
     {
         gecerliSaglik++;
-
+        SesManager.instance.SesEfektiCikar(8);
         if (gecerliSaglik >= maxSaglik)
             gecerliSaglik = maxSaglik;
 

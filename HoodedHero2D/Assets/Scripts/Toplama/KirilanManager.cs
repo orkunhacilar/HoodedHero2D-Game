@@ -43,6 +43,7 @@ public class KirilanManager : MonoBehaviour
                     Instantiate(parlamaEfekti, transform.position, transform.rotation);
 
                     GetComponent<BoxCollider2D>().enabled = false;
+                    SesManager.instance.SesEfektiCikar(9);
                     anim.SetTrigger("parcalanma");
 
                     for (int i = 0; i < 3; i++) // Kasa icindeki altinlari saga sola sicratmak icin yazdim
@@ -66,10 +67,12 @@ public class KirilanManager : MonoBehaviour
                 {
                     
                     Instantiate(parlamaEfekti, transform.position, transform.rotation);
+                    SesManager.instance.SesEfektiCikar(3);
                 }
                 else if (kacinciVurus == 1)
                 {
                     Instantiate(parlamaEfekti, transform.position, transform.rotation);
+                    SesManager.instance.SesEfektiCikar(3);
 
                     GetComponent<BoxCollider2D>().enabled = false;
                    
@@ -84,6 +87,7 @@ public class KirilanManager : MonoBehaviour
 
                         coin.GetComponent<Rigidbody2D>().velocity = patlamaMiktari * new Vector2(Random.Range(1, 2), transform.localScale.y + Random.Range(0, 2));
                     }
+                    SesManager.instance.SesEfektiCikar(9);
                     Destroy(gameObject);
                 }
                 kacinciVurus++;

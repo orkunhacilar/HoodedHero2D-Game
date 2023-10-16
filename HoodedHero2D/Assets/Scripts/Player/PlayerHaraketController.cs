@@ -107,6 +107,7 @@ public class PlayerHaraketController : MonoBehaviour
             {
                 kiliciVurdumu = true;
                 kilicVurusBoxObje.SetActive(true);
+                SesManager.instance.SesEfektiCikar(4);
             }
             else
             {
@@ -119,12 +120,14 @@ public class PlayerHaraketController : MonoBehaviour
                 mizrakAnim.SetTrigger("mizrakAtti");
                 
                 Invoke("MizragiFirlat", .5f);
+                SesManager.instance.SesEfektiCikar(5);
             }
 
            if(Input.GetKeyDown(KeyCode.E) && okPlayer.activeSelf && okAtabilirmi)
             {
                 okAnim.SetTrigger("okAtti");
                 StartCoroutine(OkuAzSonraAtRoutine());
+                SesManager.instance.SesEfektiCikar(7);
             }
 
             if (okPlayer.activeSelf)

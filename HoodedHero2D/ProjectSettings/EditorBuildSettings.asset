@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AnaMenu.unity
     guid: 5282559a062f54c5198cee2d101396c9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/girisSahnesi.unity
     guid: fa9c6a7b16a5e499abb861ad49b2a9ae
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestSahne.unity
     guid: edf730ecc82e44186beb6b00750af785
+  - enabled: 1
+    path: Assets/Scenes/LevelB.unity
+    guid: 21d37e1e0e71242a0bb2af863b27d3c0
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: e4290da3af8ea42018d4f2b81ff15db8

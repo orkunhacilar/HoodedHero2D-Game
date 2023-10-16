@@ -128,4 +128,9 @@ public class UiManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void IlkLvIleBasla()
+    {
+        SceneManager.LoadScene("LevelB");
+    }
 }

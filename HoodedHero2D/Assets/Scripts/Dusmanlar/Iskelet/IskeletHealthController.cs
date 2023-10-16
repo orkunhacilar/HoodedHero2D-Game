@@ -24,6 +24,7 @@ public class IskeletHealthController : MonoBehaviour
         if (gecerliSaglik <= 0)
         {
             iskeletOldumu = true;
+            SesManager.instance.SesEfektiCikar(2);
             GetComponent<Animator>().SetTrigger("caniniVerdi");
             GetComponent<BoxCollider2D>().enabled = false;
             iskeletSpawnController.instance.ListeyiAzalt(this.gameObject);

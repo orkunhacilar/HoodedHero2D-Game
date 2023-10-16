@@ -25,6 +25,7 @@ public class ToplamaManager : MonoBehaviour
                 GameManager.instance.toplananCointAdet++;
 
                 UiManager.instance.CoinAdetGuncelle();
+                SesManager.instance.KarisikSesEfektiCikar(6);
 
                 Destroy(gameObject);
                 Instantiate(patlamaEfekti, transform.position, Quaternion.identity);
