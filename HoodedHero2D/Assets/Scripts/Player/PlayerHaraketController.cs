@@ -57,6 +57,9 @@ public class PlayerHaraketController : MonoBehaviour
 
     bool okAtabilirmi;
 
+    [SerializeField]
+    float tirmanisHizi = 3f;
+
     private void Awake()
     {
         instance = this;
@@ -108,7 +111,7 @@ public class PlayerHaraketController : MonoBehaviour
             }
 
 
-           if (Input.GetKeyDown(KeyCode.W)&& mizrakPlayer.activeSelf) ///////////////////
+           if (Input.GetKeyDown(KeyCode.E)&& mizrakPlayer.activeSelf) ///////////////////
             {
                 mizrakAnim.SetTrigger("mizrakAtti");
                 
@@ -119,6 +122,25 @@ public class PlayerHaraketController : MonoBehaviour
             {
                 okAnim.SetTrigger("okAtti");
                 StartCoroutine(OkuAzSonraAtRoutine());
+            }
+
+            if (okPlayer.activeSelf)
+            {
+                if (GetComponent<BoxCollider2D>().IsTouchingLayers(LayerMask.GetMask("TirmanmaLayer")))
+                {
+                    float h = Input.GetAxis("Vertical");
+
+                    Vector2 tirmanisVector = new Vector2(rb.velocity.x, h * tirmanisHizi);
+                    rb.velocity = tirmanisVector;
+                    rb.gravityScale = 0f; // merdivenden cikarken yer cekimi olmasin karakter asaya dogru kaymasin
+                    okAnim.SetBool("tirmansinmi", true);
+                    okAnim.SetFloat("yukariHareketHizi", Mathf.Abs(rb.velocity.y));
+                }
+                else
+                {
+                    okAnim.SetBool("tirmansinmi", false);
+                    rb.gravityScale = 1f;
+                }
             }
 
         }
