@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6229007215899726070}
-  - component: {fileID: 2781316319240516741}
+  - component: {fileID: 7510714502330265772}
   m_Layer: 3
   m_Name: KameraCollider
   m_TagString: Untagged
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2781316319240516741
-BoxCollider2D:
+--- !u!60 &7510714502330265772
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -61,10 +61,10 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 27.940266, y: -0.9406166}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -74,6 +74,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 59.665283, y: 17.93111}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -3.856079, y: 33.700783}
+      - {x: -9.36222, y: -4.570814}
+      - {x: -5.6348243, y: -6.865465}
+      - {x: 109.459625, y: -4.9908485}
+      - {x: 108.380905, y: 33.90788}
+  m_UseDelaunayMesh: 0

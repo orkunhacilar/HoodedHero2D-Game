@@ -60,6 +60,9 @@ public class PlayerHaraketController : MonoBehaviour
     [SerializeField]
     float tirmanisHizi = 3f;
 
+    [SerializeField]
+    GameObject normalKamera, kilicKamera, okKamera, mizrakKamera;
+
     private void Awake()
     {
         instance = this;
@@ -332,6 +335,9 @@ public class PlayerHaraketController : MonoBehaviour
 
     public void TakeSword()
     {
+        TumKameralariKapat();
+        kilicKamera.SetActive(true);
+
         normalPlayer.SetActive(false);
         mizrakPlayer.SetActive(false);
         kilicPlayer.SetActive(true);
@@ -341,6 +347,9 @@ public class PlayerHaraketController : MonoBehaviour
 
     public void HerseyiKapatMizrakAc()
     {
+        TumKameralariKapat();
+        mizrakKamera.SetActive(true);
+
         normalPlayer.SetActive(false);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(true);
@@ -349,6 +358,8 @@ public class PlayerHaraketController : MonoBehaviour
 
     public void HerseyiKapatNormaliAc()
     {
+        TumKameralariKapat();
+        normalKamera.SetActive(true);
        
         normalPlayer.SetActive(true);
         kilicPlayer.SetActive(false);
@@ -358,12 +369,22 @@ public class PlayerHaraketController : MonoBehaviour
     }
     public void HerseyiKapatOkuAc()
     {
+        TumKameralariKapat();
+        okKamera.SetActive(true);
 
         normalPlayer.SetActive(false);
         kilicPlayer.SetActive(false);
         mizrakPlayer.SetActive(false);
         okPlayer.SetActive(true);
 
+    }
+
+    void TumKameralariKapat()
+    {
+        normalKamera.SetActive(false);
+        kilicKamera.SetActive(false);
+        mizrakKamera.SetActive(false);
+        okKamera.SetActive(false);
     }
 
     public void PlayerHareketsizYap()
