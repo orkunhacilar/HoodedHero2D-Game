@@ -39,7 +39,7 @@ public class iskeletSpawnController : MonoBehaviour
 
         spawnSayac = 0;
 
-        if (iskeletList.Count < 3)
+        if (iskeletList.Count < 1)
         {
             while (spawnSayac < spawnSuresi)
             {
@@ -53,7 +53,7 @@ public class iskeletSpawnController : MonoBehaviour
             iskeletList.Add(iskelet);
             iskeletAdet++;
 
-            if(spawnSayac >= spawnSuresi && iskeletAdet < 3)
+            if(spawnSayac >= spawnSuresi && iskeletAdet < 1)
             {
                 StartCoroutine(iskeletSpawnRoutine());
             }
@@ -64,7 +64,7 @@ public class iskeletSpawnController : MonoBehaviour
     {
         iskeletList.Remove(iskelet);
 
-        if (iskeletAdet >= 3)
+        if (iskeletAdet >= 1)
             StartCoroutine(OyundanCikRoutine());
     }
 
