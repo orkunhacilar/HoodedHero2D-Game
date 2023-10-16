@@ -45,7 +45,7 @@ public class IskeletHaraketController : MonoBehaviour
     private void Update()
     {
 
-        if (PlayerHedef.GetComponent<PlayerHaraketController>().playerCanverdimi)
+        if (PlayerHedef.GetComponent<PlayerHaraketController>().playerCanverdimi || GetComponent<IskeletHealthController>().iskeletOldumu)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
             anim.SetBool("atakYapti", false);

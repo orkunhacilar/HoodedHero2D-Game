@@ -48,6 +48,7 @@ public class UiManager : MonoBehaviour
         foreach (Transform btn in butonlarPanel)
         {
             btn.gameObject.GetComponent<CanvasGroup>().alpha = 0.25f;
+            btn.GetComponent<Button>().interactable = true;
         }
 
     }
@@ -57,24 +58,29 @@ public class UiManager : MonoBehaviour
         TumButonlarinAlphasiniDusur();
         UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetComponent<CanvasGroup>().alpha = 1f; // Tikladigimiz buton icin gecerli
         PlayerHaraketController.instance.HerseyiKapatNormaliAc();
+
+        UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false; //
     }
     public void KilicButonaBasildi()
     {
         TumButonlarinAlphasiniDusur();
         UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetComponent<CanvasGroup>().alpha = 1f; // Tikladigimiz buton icin gecerli
         PlayerHaraketController.instance.HerseyiKapatKilicAc();
+        UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
     }
     public void OkButonaBasildi()
     {
         TumButonlarinAlphasiniDusur();
         UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetComponent<CanvasGroup>().alpha = 1f; // Tikladigimiz buton icin gecerli
         PlayerHaraketController.instance.HerseyiKapatOkuAc();
+        UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
     }
     public void MizrakButonaBasildi()
     {
         TumButonlarinAlphasiniDusur();
         UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.transform.GetComponent<CanvasGroup>().alpha = 1f; // Tikladigimiz buton icin gecerli
         PlayerHaraketController.instance.HerseyiKapatMizrakAc();
+        UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
     }
 
 

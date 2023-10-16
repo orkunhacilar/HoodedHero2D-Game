@@ -36,5 +36,17 @@ public class PlayerAttakControler : MonoBehaviour
                 collision.GetComponent<BatController>().CaniAzaltFNC();
             }
         }
+
+        if (kilicVurusBox.IsTouchingLayers(LayerMask.GetMask("iskeletLayer")))
+        {
+            if (collision.CompareTag("iskelet"))
+            {
+                if (parlamaEfekti)
+                {
+                    Instantiate(parlamaEfekti, collision.transform.position, Quaternion.identity); // vurdugumda efekt olussun
+                }
+                collision.GetComponent<IskeletHealthController>().CaniAzaltFNC();
+            }
+        }
     }
 }

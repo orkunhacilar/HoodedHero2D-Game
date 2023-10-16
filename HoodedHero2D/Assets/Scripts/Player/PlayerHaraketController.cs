@@ -103,7 +103,7 @@ public class PlayerHaraketController : MonoBehaviour
                 okSprite.color = new Color(okSprite.color.r, okSprite.color.g, okSprite.color.b, 1f);
             }
 
-            if (Input.GetMouseButtonDown(0) && kilicPlayer.activeSelf)
+            if (Input.GetKeyDown(KeyCode.E) && kilicPlayer.activeSelf)
             {
                 kiliciVurdumu = true;
                 kilicVurusBoxObje.SetActive(true);
