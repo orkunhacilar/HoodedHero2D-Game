@@ -44,6 +44,15 @@ public class IskeletHaraketController : MonoBehaviour
 
     private void Update()
     {
+
+        if (PlayerHedef.GetComponent<PlayerHaraketController>().playerCanverdimi)
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
+            anim.SetBool("atakYapti", false);
+            return;
+        }
+
+
         float mesafe = Vector2.Distance(PlayerHedef.position, transform.position);
 
         // print(mesafe);
