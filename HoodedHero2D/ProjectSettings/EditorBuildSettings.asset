@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TestSahne.unity
     guid: edf730ecc82e44186beb6b00750af785
   - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: e4290da3af8ea42018d4f2b81ff15db8
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: f9ed7c8ebfd8749099fccb20e858ce81
   m_configObjects: {}

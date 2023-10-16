@@ -79,7 +79,7 @@ public class OrumcekController : MonoBehaviour
             {
 
                 //ORUMCEK Playeri takip ederken y ekseninde tirmanmasin diye sinirlandiriyorum
-                Vector3 yeniPos = yeniPos = hedefPlayer.position;
+                Vector3 yeniPos = hedefPlayer.position;
                 yeniPos.y = transform.position.y;
 
 
