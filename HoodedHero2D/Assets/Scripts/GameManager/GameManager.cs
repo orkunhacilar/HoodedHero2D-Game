@@ -16,5 +16,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         toplananCointAdet = 0;
+        Time.timeScale = 1f;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UiManager.instance.PausePanelAcKapat();
+        }
+    }
+
+    public void OyunCikisEkraniniAc()
+    {
+        UiManager.instance.BitisPaneliniAc();
     }
 }

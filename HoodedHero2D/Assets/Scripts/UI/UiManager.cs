@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     Transform butonlarPanel;
 
+    [SerializeField]
+    GameObject pausePanel;
+
+    [SerializeField]
+    GameObject bitisPanel;
+
 
 
     private void Awake()
@@ -30,6 +37,10 @@ public class UiManager : MonoBehaviour
         TumButonlarinAlphasiniDusur();
         butonlarPanel.GetChild(0).GetComponent<CanvasGroup>().alpha = 1f;
         PlayerHaraketController.instance.HerseyiKapatNormaliAc();
+
+        pausePanel.SetActive(false);
+        bitisPanel.SetActive(false);
+
     }
 
     public void SlideriGuncelle(int gecerliDeger, int maxDeger)
@@ -83,5 +94,38 @@ public class UiManager : MonoBehaviour
         UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
     }
 
+    public void PausePanelAcKapat()
+    {
+        if (!pausePanel.activeInHierarchy)
+        {
+            pausePanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
 
+    public void AnaMenuyeDon()
+    {
+        SceneManager.LoadScene("AnaMenu");
+    }
+
+    public void BitisPaneliniAc()
+    {
+        bitisPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void TekrarOyna()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OyundanCik()
+    {
+        Application.Quit();
+    }
 }

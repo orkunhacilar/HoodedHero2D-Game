@@ -53,7 +53,7 @@ public class iskeletSpawnController : MonoBehaviour
             iskeletList.Add(iskelet);
             iskeletAdet++;
 
-            if(spawnSayac >= spawnSuresi && iskeletAdet < 6)
+            if(spawnSayac >= spawnSuresi && iskeletAdet < 2)
             {
                 StartCoroutine(iskeletSpawnRoutine());
             }
@@ -64,8 +64,14 @@ public class iskeletSpawnController : MonoBehaviour
     {
         iskeletList.Remove(iskelet);
 
-        if (iskeletAdet >= 6)
-            print("oyun bitti");
+        if (iskeletAdet >= 2)
+            StartCoroutine(OyundanCikRoutine());
+    }
+
+    IEnumerator OyundanCikRoutine()
+    {
+        yield return new WaitForSeconds(2f);
+        GameManager.instance.OyunCikisEkraniniAc();
     }
 
 }
