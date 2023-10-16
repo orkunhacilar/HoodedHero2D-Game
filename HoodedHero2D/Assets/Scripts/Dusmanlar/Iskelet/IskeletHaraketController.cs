@@ -57,32 +57,62 @@ public class IskeletHaraketController : MonoBehaviour
             sinirIcindemi = true;
         }
 
-        if(Mathf.Abs(transform.position.x - pozisyonlar[kacinciPozisyon].position.x) > 0.2f)
+        if (!sinirIcindemi) //karakter uzaktaysa yani kisaca
         {
-            if(transform.position.x < pozisyonlar[kacinciPozisyon].position.x)
+            if (Mathf.Abs(transform.position.x - pozisyonlar[kacinciPozisyon].position.x) > 0.2f) // iskelet ile masafe arasinda uzaklik varsa
             {
-                rb.velocity = new Vector2(iskeletHizi, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-iskeletHizi, rb.velocity.y);
-            }
-            print(Mathf.Sign(rb.velocity.x));
-            transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
+                if (transform.position.x < pozisyonlar[kacinciPozisyon].position.x) // pozisyon sagda iskelet solda kaldiysa
+                {
+                    rb.velocity = new Vector2(iskeletHizi, rb.velocity.y); // iskelete saga gidicek derecede + x kuveeti veriyoruz
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-iskeletHizi, rb.velocity.y); // tam tersi iskelet sola gitsin
+                }
+               // print(Mathf.Sign(rb.velocity.x));
+                transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f); //Sign isaret olarak almama yariyo yani scale 1 -1 gibi degeri aliyo okuyo gibi dusun.
 
+            }
+            else //iskelet artik pos123 neyse ona ulastiysa
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y); //x i durdur beklesin yani
+                bekelemeSayac -= Time.deltaTime; // soyledigim saniye kadar burda dursun
+
+                if (bekelemeSayac <= 0) // ve beklemesayacim artik 0 a dustugunde
+                {
+                    bekelemeSayac = beklemeSuresi; // sayacimi gene guncelliyorum hemen
+                    kacinciPozisyon++; // pozisyonumu degistiriyorum
+                    if (kacinciPozisyon >= pozisyonlar.Length)       //son pos geldikten sonra dahasi olmadigi icin sifirliyoruz.
+                        kacinciPozisyon = 0;
+                }
+            }
         }
-        else
+        else // Karakterim Sinir Icine Girerse
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
-            bekelemeSayac -= Time.deltaTime;
+            Vector2 yonVectoru = transform.position - PlayerHedef.position; // nereye dogru gitcegini hemen bir cikarma islemi ile anliyoruz.
 
-            if(bekelemeSayac < 0)
+            if(yonVectoru.magnitude > 1.5f && PlayerHedef != null) //yon vectorunun uzunlugunu olcuyorum(magnitude) cok fazla yaklasmasini istemiyorum cunku
             {
-                bekelemeSayac = beklemeSuresi;
-                kacinciPozisyon++;
-                if (kacinciPozisyon >= pozisyonlar.Length)
-                    kacinciPozisyon = 0;
-            } 
+                if (yonVectoru.x > 0) // x + cikarsa ne demek. iskeletin x'inden playeri cikardim ve hala + geliyosa.Demek ki iskeletin x daha buyuk. bu da iskelet sag player solda demek
+                {
+                    rb.velocity = new Vector2(-iskeletHizi, rb.velocity.y); // o zaman iskelet sola dogru yani playera  dogru gitsin diyorum.
+
+                }
+                else
+                {
+                    rb.velocity = new Vector2(iskeletHizi, rb.velocity.y); //tersinde zaten saga gitsin diyorum
+                }
+                anim.SetBool("atakYapti", false); // uzaktaysa kapat
+                transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f); // oku benim Hız degerimi + mı veriyom sana - mı ona göre scale'imi otamatik olarak cevir.
+            }
+            else // aradai mesafe 1.5f olursa falan demistik yukardaki if'de. Burda da iyice bana yanasirsa iskelet dursun istiyorum.
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+                anim.SetBool("atakYapti", true); //yakindaysa ac
+            }
         }
+
+        anim.SetFloat("hareketHizi", Mathf.Abs(rb.velocity.x));
+       
     }
 }
