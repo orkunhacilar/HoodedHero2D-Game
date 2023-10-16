@@ -333,7 +333,7 @@ public class PlayerHaraketController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void TakeSword()
+    public void HerseyiKapatKilicAc()
     {
         TumKameralariKapat();
         kilicKamera.SetActive(true);

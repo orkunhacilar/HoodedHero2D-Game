@@ -15,7 +15,7 @@ public class PlayerAraclarContoller : MonoBehaviour
 
             if (collision != null && kilicmi)
             {
-                collision.GetComponent<PlayerHaraketController>().TakeSword();
+                collision.GetComponent<PlayerHaraketController>().HerseyiKapatKilicAc();
 
             }
 
